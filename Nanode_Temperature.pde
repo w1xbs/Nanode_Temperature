@@ -50,9 +50,9 @@
 #define TIME_OUT 30000                                   // time to wait for a response from internet (30 seconds)
 float setpoint = 70.00;                                  // default setpoint upon first use
 float differential = 2.50;                               // differential
-char HOSTNAME[] PROGMEM = "ka1kjz.com";                  // hostname of a shared hosting server here
-static byte hisip[] = {173,203,204,206};                 // ipaddress of the server here  
-#define HTTPPATH "/php_db/nanode_temperature.php"        // path to the PHP script
+char HOSTNAME[] PROGMEM = "hostname.com";                // hostname of a shared hosting server here
+static byte hisip[] = {***,***,***,***};                 // ipaddress of the server here  
+#define HTTPPATH "/somewhere/nanode_temperature.php"     // path to the PHP script
 #define DATABASE "nanode_temperature"                    // database name
 #define TABLE "node1"                                    // table name
 //**********************************
@@ -257,7 +257,7 @@ void sendDataToWebserver()
   sprintf(paramString, "?db=%s&table=%s&tempC=%s&tempF=%s&millis=%i", DATABASE, TABLE, ftoa(vstr_tempC, tempC, 2), ftoa(vstr_tempF, tempF, 2), last_ms);
   Serial.println(paramString);
 
-  ether.browseUrl(PSTR("/php_db/nanode_temperature.php"), paramString, HOSTNAME, my_result_cb);
+  ether.browseUrl(PSTR("/path/nanode_temperature.php"), paramString, HOSTNAME, my_result_cb);
   
   digitalWrite(LED, HIGH);                                // Turn it OFF (reverse logic)
 }
